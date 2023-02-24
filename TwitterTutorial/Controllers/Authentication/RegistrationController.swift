@@ -116,7 +116,16 @@ class RegistrationController: UIViewController {
         
         AuthService.shared.registerUser(credentials: credentials) { (error, ref) in
             print("DEBUG: 회원가입 성공")
-            print("DEBUG: UI 업데이트 예정")
+            // 회원가입 성공
+            // UIApplication의 Window / 루트뷰를 찾아서, Auth 인증 함수 호출, 이후 Dismiss
+            let scenes = UIApplication.shared.connectedScenes
+            let windowScenes = scenes.first as? UIWindowScene
+            guard let window = windowScenes?.windows.first(where: { $0.isKeyWindow }) else { return }
+            
+            guard let tab = window.rootViewController as? MainTabController else { return }
+            tab.authenticateUserAndConfigureUI()
+            
+            self.dismiss(animated: true)
         }
     }
     

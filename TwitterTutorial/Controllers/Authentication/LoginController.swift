@@ -69,7 +69,27 @@ class LoginController: UIViewController {
     
     //MARK: - Selectores
     @objc func handleLogin() {
-
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        // 로그인 시도
+        AuthService.shared.logUserIn(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                print("DEBUG: ERROR - \(error)")
+                return
+            }
+            
+            // 로그인 성공
+            // UIApplication의 Window / 루트뷰를 찾아서, Auth 인증 함수 호출, 이후 Dismiss
+            let scenes = UIApplication.shared.connectedScenes
+            let windowScenes = scenes.first as? UIWindowScene
+            guard let window = windowScenes?.windows.first(where: { $0.isKeyWindow }) else { return }
+            
+            guard let tab = window.rootViewController as? MainTabController else { return }
+            tab.authenticateUserAndConfigureUI()
+            
+            self.dismiss(animated: true)
+        }
     }
     
     @objc func handleShowSignUp() {

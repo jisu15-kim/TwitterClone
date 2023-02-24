@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 import SnapKit
 
 class MainTabController: UITabBarController {
@@ -25,13 +26,39 @@ class MainTabController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        uiTabBarSetting()
-        configureViewControllers()
-        configureUI()
+        view.backgroundColor = .twitterBlue
+        authenticateUserAndConfigureUI()
     }
+    //MARK: - API
+    func authenticateUserAndConfigureUI() {
+        if Auth.auth().currentUser == nil {
+            print("DEBUG: 로그인 상태가 아닙니다")
+            DispatchQueue.main.async {
+                let nav = UINavigationController(rootViewController: LoginController())
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true)
+            }
+        } else {
+            print("DEBUG: 로그인 되었습니다")
+            uiTabBarSetting()
+            configureViewControllers()
+            configureUI()
+        }
+    }
+    
+    func logUserOut() {
+        do {
+            try Auth.auth().signOut()
+            authenticateUserAndConfigureUI()
+        } catch let error {
+            print("DEBUG: 로그아웃에 실패했어요 \(error)")
+        }
+    }
+    
     //MARK: - Selectors
     @objc func ActionButtonTapped() {
         print("Action Button Tapped")
+        logUserOut()
     }
     
     //MARK: - Helpers

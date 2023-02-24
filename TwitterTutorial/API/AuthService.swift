@@ -19,6 +19,10 @@ struct AuthCredentials {
 struct AuthService {
     static let shared = AuthService()
     
+    func logUserIn(withEmail email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password, completion: completion)
+    }
+    
     func registerUser(credentials: AuthCredentials, completion: @escaping(Error?, DatabaseReference) -> Void) {
         
         let email = credentials.email
@@ -51,6 +55,7 @@ struct AuthService {
                                   "fullname" : fullname,
                                   "profileImageUrl" : profileImageUrl]
                     
+                    // User의 UID로 DB에 업데이트하기
                     REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)
                 }
             }
