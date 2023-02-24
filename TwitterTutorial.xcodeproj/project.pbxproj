@@ -17,6 +17,11 @@
 		CDB3405729A85F7800D89820 /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3405629A85F7800D89820 /* ExploreController.swift */; };
 		CDB3405929A85F8800D89820 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3405829A85F8800D89820 /* NotificationsController.swift */; };
 		CDB3405B29A85F9000D89820 /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3405A29A85F9000D89820 /* ConversationsController.swift */; };
+		CDB3405D29A86B4F00D89820 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3405C29A86B4F00D89820 /* Extensions.swift */; };
+		CDB3406829A86F8F00D89820 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CDB3406729A86F8F00D89820 /* SnapKit */; };
+		CDB3406B29A874BA00D89820 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3406A29A874BA00D89820 /* LoginController.swift */; };
+		CDB3406E29A8751300D89820 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3406D29A8751300D89820 /* RegistrationController.swift */; };
+		CDB3407029A87A1F00D89820 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3406F29A87A1F00D89820 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +37,10 @@
 		CDB3405629A85F7800D89820 /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
 		CDB3405829A85F8800D89820 /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 		CDB3405A29A85F9000D89820 /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
+		CDB3405C29A86B4F00D89820 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CDB3406A29A874BA00D89820 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		CDB3406D29A8751300D89820 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		CDB3406F29A87A1F00D89820 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB3406829A86F8F00D89820 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +100,7 @@
 		CDB3404D29A85D3600D89820 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CDB3406929A874A300D89820 /* Authentication */,
 				CDB3405229A85DDF00D89820 /* MainTabController.swift */,
 				CDB3405429A85F5000D89820 /* FeedController.swift */,
 				CDB3405629A85F7800D89820 /* ExploreController.swift */,
@@ -123,8 +134,19 @@
 		CDB3405129A85D5900D89820 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CDB3405C29A86B4F00D89820 /* Extensions.swift */,
+				CDB3406F29A87A1F00D89820 /* Utilities.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		CDB3406929A874A300D89820 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				CDB3406A29A874BA00D89820 /* LoginController.swift */,
+				CDB3406D29A8751300D89820 /* RegistrationController.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +165,9 @@
 			dependencies = (
 			);
 			name = TwitterTutorial;
+			packageProductDependencies = (
+				CDB3406729A86F8F00D89820 /* SnapKit */,
+			);
 			productName = TwitterTutorial;
 			productReference = CD884AAC29A85CD900891BE8 /* TwitterTutorial.app */;
 			productType = "com.apple.product-type.application";
@@ -171,6 +196,9 @@
 				Base,
 			);
 			mainGroup = CD884AA329A85CD900891BE8;
+			packageReferences = (
+				CDB3406629A86F8F00D89820 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = CD884AAD29A85CD900891BE8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -200,10 +228,14 @@
 			files = (
 				CDB3405929A85F8800D89820 /* NotificationsController.swift in Sources */,
 				CDB3405B29A85F9000D89820 /* ConversationsController.swift in Sources */,
+				CDB3407029A87A1F00D89820 /* Utilities.swift in Sources */,
 				CD884AB029A85CD900891BE8 /* AppDelegate.swift in Sources */,
+				CDB3405D29A86B4F00D89820 /* Extensions.swift in Sources */,
+				CDB3406B29A874BA00D89820 /* LoginController.swift in Sources */,
 				CDB3405729A85F7800D89820 /* ExploreController.swift in Sources */,
 				CD884AB229A85CD900891BE8 /* SceneDelegate.swift in Sources */,
 				CDB3405329A85DDF00D89820 /* MainTabController.swift in Sources */,
+				CDB3406E29A8751300D89820 /* RegistrationController.swift in Sources */,
 				CDB3405529A85F5000D89820 /* FeedController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +456,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CDB3406629A86F8F00D89820 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CDB3406729A86F8F00D89820 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDB3406629A86F8F00D89820 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CD884AA429A85CD900891BE8 /* Project object */;
 }

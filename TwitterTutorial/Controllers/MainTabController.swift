@@ -6,10 +6,19 @@
 //
 
 import UIKit
+import SnapKit
 
 class MainTabController: UITabBarController {
     
     //MARK: - Properties
+    let actionButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.tintColor = .white
+        button.backgroundColor = .twitterBlue
+        button.setImage(UIImage(named: "new_tweet"), for: .normal)
+        button.addTarget(nil, action: #selector(ActionButtonTapped), for: .touchUpInside)
+        return button
+    }()
     
     //MARK: - LifeCycle
 
@@ -18,17 +27,25 @@ class MainTabController: UITabBarController {
 
         uiTabBarSetting()
         configureViewControllers()
+        configureUI()
+    }
+    //MARK: - Selectors
+    @objc func ActionButtonTapped() {
+        print("Action Button Tapped")
     }
     
     //MARK: - Helpers
-    func uiTabBarSetting() {
-        if #available(iOS 15.0, *){
-            let appearance = UITabBarAppearance()
-            appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = .systemGray5
-            tabBar.standardAppearance = appearance
-            tabBar.scrollEdgeAppearance = appearance
+    func configureUI() {
+        view.addSubview(actionButton)
+        
+        actionButton.snp.makeConstraints {
+            $0.width.height.equalTo(56)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(64)
+            $0.trailing.equalTo(view).inset(16)
         }
+        
+        actionButton.layer.cornerRadius = 56 / 2
+        actionButton.clipsToBounds = true
     }
     
     func configureViewControllers() {
@@ -63,5 +80,15 @@ class MainTabController: UITabBarController {
         nav.navigationBar.scrollEdgeAppearance = nav.navigationBar.standardAppearance
         
         return nav
+    }
+    
+    func uiTabBarSetting() {
+        if #available(iOS 15.0, *){
+            let appearance = UITabBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .systemGray5
+            tabBar.standardAppearance = appearance
+            tabBar.scrollEdgeAppearance = appearance
+        }
     }
 }
