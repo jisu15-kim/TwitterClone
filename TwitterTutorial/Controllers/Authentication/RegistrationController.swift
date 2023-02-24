@@ -6,12 +6,13 @@
 //
 
 import UIKit
-import SwiftUI
+import Firebase
 
 class RegistrationController: UIViewController {
     
     //MARK: - Properties
     private let imagePicker = UIImagePickerController()
+    private var profileImage: UIImage?
     
     private let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -74,7 +75,7 @@ class RegistrationController: UIViewController {
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.layer.cornerRadius = 5
         button.titleLabel?.font = .systemFont(ofSize: 20)
-        button.addTarget(nil, action: #selector(handleSignUp), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(handleRegistration), for: .touchUpInside)
         return button
     }()
     
@@ -100,8 +101,53 @@ class RegistrationController: UIViewController {
         present(imagePicker, animated: true)
     }
     
-    @objc func handleSignUp() {
-        print(#function)
+    // 회원가입 버튼
+    @objc func handleRegistration() {
+        guard let profileImage = profileImage else {
+            print("DEBUG: 프로필 이미지를 선택해주세요")
+            return
+        }
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let fullname = fullNameTextField.text else { return }
+        guard let username = userNameTextField.text else { return }
+        
+        guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else {
+            print("DEBUG: JPEG 변환 실패")
+            return
+        }
+        let filename = NSUUID().uuidString
+        let storageRef = STORAGE_PROFILE_IMAGES.child(filename)
+        
+        
+        // 이미지 업로드
+        storageRef.putData(imageData, metadata: nil) {(meta, error) in
+            
+            // 이미지 다운로드
+            storageRef.downloadURL { (url, error) in
+                // URL 가져오기
+                guard let profileImageUrl = url?.absoluteString else { return }
+                print("PROFILE URL : \(profileImageUrl)")
+                // Firebase 로그인 Auth
+                Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+                    if let error = error {
+                        print("DEBUG: Error is \(error.localizedDescription)")
+                        return // 에러가 있으면 함수 종료
+                    }
+                    
+                    guard let uid = result?.user.uid else { return }
+                    
+                    let values = ["email" : email,
+                                  "username" : username,
+                                  "fullname" : fullname,
+                                  "profileImageUrl" : profileImageUrl]
+                    
+                    REF_USERS.child(uid).updateChildValues(values) { (error, ref) in
+                        print("작동해")
+                    }
+                }
+            }
+        }
     }
     
     //MARK: - Helpers
@@ -146,7 +192,7 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         guard let profileImage = info[.editedImage] as? UIImage else { return }
-        
+        self.profileImage = profileImage
         plusPhotoButton.layer.cornerRadius = 128 / 2
         plusPhotoButton.layer.masksToBounds = true
         plusPhotoButton.imageView?.contentMode = .scaleAspectFill

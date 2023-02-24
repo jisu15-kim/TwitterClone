@@ -51,7 +51,7 @@ class LoginController: UIViewController {
         button.layer.cornerRadius = 5
         button.titleLabel?.font = .systemFont(ofSize: 20)
         button.addTarget(nil, action: #selector(handleLogin), for: .touchUpInside)
-        return button
+        return button 
     }()
     
     private let dontHaveAccountButton: UIButton = {
