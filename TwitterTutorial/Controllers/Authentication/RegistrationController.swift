@@ -111,42 +111,12 @@ class RegistrationController: UIViewController {
         guard let password = passwordTextField.text else { return }
         guard let fullname = fullNameTextField.text else { return }
         guard let username = userNameTextField.text else { return }
+
+        let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
         
-        guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else {
-            print("DEBUG: JPEG 변환 실패")
-            return
-        }
-        let filename = NSUUID().uuidString
-        let storageRef = STORAGE_PROFILE_IMAGES.child(filename)
-        
-        
-        // 이미지 업로드
-        storageRef.putData(imageData, metadata: nil) {(meta, error) in
-            
-            // 이미지 다운로드
-            storageRef.downloadURL { (url, error) in
-                // URL 가져오기
-                guard let profileImageUrl = url?.absoluteString else { return }
-                print("PROFILE URL : \(profileImageUrl)")
-                // Firebase 로그인 Auth
-                Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-                    if let error = error {
-                        print("DEBUG: Error is \(error.localizedDescription)")
-                        return // 에러가 있으면 함수 종료
-                    }
-                    
-                    guard let uid = result?.user.uid else { return }
-                    
-                    let values = ["email" : email,
-                                  "username" : username,
-                                  "fullname" : fullname,
-                                  "profileImageUrl" : profileImageUrl]
-                    
-                    REF_USERS.child(uid).updateChildValues(values) { (error, ref) in
-                        print("작동해")
-                    }
-                }
-            }
+        AuthService.shared.registerUser(credentials: credentials) { (error, ref) in
+            print("DEBUG: 회원가입 성공")
+            print("DEBUG: UI 업데이트 예정")
         }
     }
     
