@@ -12,6 +12,14 @@ import SnapKit
 class MainTabController: UITabBarController {
     
     //MARK: - Properties
+    var user: User? {
+        didSet {
+            guard let nav = viewControllers?[0] as? UINavigationController else { return }
+            guard let feed = nav.viewControllers.first as? FeedController else { return }
+            feed.user = self.user
+        }
+    }
+    
     let actionButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
@@ -30,6 +38,12 @@ class MainTabController: UITabBarController {
         authenticateUserAndConfigureUI()
     }
     //MARK: - API
+    func fetchUser() {
+        UserService.shared.fetchUser { user in
+            self.user = user
+        }
+    }
+    
     func authenticateUserAndConfigureUI() {
         if Auth.auth().currentUser == nil {
             print("DEBUG: 로그인 상태가 아닙니다")
@@ -43,6 +57,7 @@ class MainTabController: UITabBarController {
             uiTabBarSetting()
             configureViewControllers()
             configureUI()
+            fetchUser()
         }
     }
     
@@ -57,8 +72,12 @@ class MainTabController: UITabBarController {
     
     //MARK: - Selectors
     @objc func ActionButtonTapped() {
-        print("Action Button Tapped")
-        logUserOut()
+//        logUserOut()
+        guard let user = user else { return }
+        let nav = UINavigationController(rootViewController: UploadTweetController(user: user))
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
+        
     }
     
     //MARK: - Helpers
