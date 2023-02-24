@@ -42,6 +42,24 @@ class LoginController: UIViewController {
         return tf
     }()
     
+    private let loginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .white
+        button.setTitle("Log In", for: .normal)
+        button.setTitleColor(.twitterBlue, for: .normal)
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        button.layer.cornerRadius = 5
+        button.titleLabel?.font = .systemFont(ofSize: 20)
+        button.addTarget(nil, action: #selector(handleLogin), for: .touchUpInside)
+        return button
+    }()
+    
+    private let dontHaveAccountButton: UIButton = {
+        let button = Utilities().attributedButton("Don't have an account? ", "Sign Up")
+        button.addTarget(nil, action: #selector(handleShowSignUp), for: .touchUpInside)
+        return button
+    }()
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +68,14 @@ class LoginController: UIViewController {
     }
     
     //MARK: - Selectores
+    @objc func handleLogin() {
+
+    }
+    
+    @objc func handleShowSignUp() {
+        let controller = RegistrationController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
     
     //MARK: - Helpers
     
@@ -64,14 +90,23 @@ class LoginController: UIViewController {
             $0.width.height.equalTo(150)
         }
         
-        let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView])
+        let stack = UIStackView(arrangedSubviews: [emailContainerView,
+                                                   passwordContainerView,
+                                                   loginButton])
         stack.axis = .vertical
-        stack.spacing = 8
+        stack.spacing = 20
+        stack.distribution = .fillEqually
         
         view.addSubview(stack)
         stack.snp.makeConstraints {
             $0.top.equalTo(logoImageView.snp.bottom)
-            $0.leading.trailing.equalToSuperview().inset(15)
+            $0.leading.trailing.equalToSuperview().inset(28)
+        }
+        
+        view.addSubview(dontHaveAccountButton)
+        dontHaveAccountButton.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(40)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
