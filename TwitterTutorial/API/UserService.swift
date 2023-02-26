@@ -22,4 +22,13 @@ struct UserService {
             completion(user)
         }
     }
+    
+    func logUserOut(completion: @escaping() -> Void) {
+        do {
+            try Auth.auth().signOut()
+            completion()
+        } catch let error {
+            print("DEBUG: 로그아웃에 실패했어요 \(error)")
+        }
+    }
 }

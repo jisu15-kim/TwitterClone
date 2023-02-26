@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CD884AB029A85CD900891BE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD884AAF29A85CD900891BE8 /* AppDelegate.swift */; };
 		CD884AB229A85CD900891BE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD884AB129A85CD900891BE8 /* SceneDelegate.swift */; };
-		CD884AB729A85CD900891BE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD884AB529A85CD900891BE8 /* Main.storyboard */; };
 		CD884AB929A85CDA00891BE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD884AB829A85CDA00891BE8 /* Assets.xcassets */; };
 		CD884ABC29A85CDA00891BE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD884ABA29A85CDA00891BE8 /* LaunchScreen.storyboard */; };
 		CDB3405329A85DDF00D89820 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3405229A85DDF00D89820 /* MainTabController.swift */; };
@@ -49,7 +48,6 @@
 		CD884AAC29A85CD900891BE8 /* TwitterTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD884AAF29A85CD900891BE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD884AB129A85CD900891BE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CD884AB629A85CD900891BE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD884AB829A85CDA00891BE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD884ABB29A85CDA00891BE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD884ABD29A85CDA00891BE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 				CDB3405129A85D5900D89820 /* Utils */,
 				CD884AAF29A85CD900891BE8 /* AppDelegate.swift */,
 				CD884AB129A85CD900891BE8 /* SceneDelegate.swift */,
-				CD884AB529A85CD900891BE8 /* Main.storyboard */,
 				CD884AB829A85CDA00891BE8 /* Assets.xcassets */,
 				CD884ABA29A85CDA00891BE8 /* LaunchScreen.storyboard */,
 				CD884ABD29A85CDA00891BE8 /* Info.plist */,
@@ -282,7 +279,6 @@
 				CD884ABC29A85CDA00891BE8 /* LaunchScreen.storyboard in Resources */,
 				CDB3407229A894E000D89820 /* GoogleService-Info.plist in Resources */,
 				CD884AB929A85CDA00891BE8 /* Assets.xcassets in Resources */,
-				CD884AB729A85CD900891BE8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,14 +321,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CD884AB529A85CD900891BE8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CD884AB629A85CD900891BE8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CD884ABA29A85CDA00891BE8 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -470,7 +458,6 @@
 				INFOPLIST_FILE = TwitterTutorial/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -499,7 +486,6 @@
 				INFOPLIST_FILE = TwitterTutorial/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

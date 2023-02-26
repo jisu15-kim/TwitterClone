@@ -62,15 +62,6 @@ class MainTabController: UITabBarController {
         }
     }
     
-    func logUserOut() {
-        do {
-            try Auth.auth().signOut()
-            authenticateUserAndConfigureUI()
-        } catch let error {
-            print("DEBUG: 로그아웃에 실패했어요 \(error)")
-        }
-    }
-    
     //MARK: - Selectors
     @objc func ActionButtonTapped() {
 //        logUserOut()
@@ -78,7 +69,6 @@ class MainTabController: UITabBarController {
         let nav = UINavigationController(rootViewController: UploadTweetController(user: user))
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)
-        
     }
     
     //MARK: - Helpers
@@ -98,6 +88,7 @@ class MainTabController: UITabBarController {
     func configureViewControllers() {
         
         let feed = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
+        feed.delegate = self
         let nav1 = templateNavigationController("home_unselected", viewController: feed)
         
         let explore = ExploreController()
@@ -137,5 +128,11 @@ class MainTabController: UITabBarController {
             tabBar.standardAppearance = appearance
             tabBar.scrollEdgeAppearance = appearance
         }
+    }
+}
+
+extension MainTabController: FeedControllerDelegate {
+    func logoutTapped() {
+        authenticateUserAndConfigureUI()
     }
 }

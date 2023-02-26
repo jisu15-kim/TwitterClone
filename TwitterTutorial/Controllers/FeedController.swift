@@ -10,9 +10,15 @@ import Kingfisher
 
 private let reuseIdentifier = "TweetCell"
 
+protocol FeedControllerDelegate: AnyObject {
+    func logoutTapped()
+}
+
 class FeedController: UICollectionViewController {
     
     //MARK: - Properties
+    weak var delegate: FeedControllerDelegate?
+    
     var user: User? {
         didSet {
             configureLeftBarButton()
@@ -44,6 +50,12 @@ class FeedController: UICollectionViewController {
             self.tweets = tweets
         }
     }
+    //MARK: - Selector
+    @objc func handleMyImageTapped() {
+        UserService.shared.logUserOut { [weak self] in
+            self?.delegate?.logoutTapped()
+        }
+    }
     
     //MARK: - Helpers
     
@@ -65,6 +77,10 @@ class FeedController: UICollectionViewController {
         profileImageView.layer.cornerRadius = 32 / 2
         profileImageView.clipsToBounds = true
         profileImageView.kf.setImage(with: user.profileImageUrl)
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleMyImageTapped))
+        profileImageView.addGestureRecognizer(gesture)
+        profileImageView.isUserInteractionEnabled = true
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
     }
