@@ -16,7 +16,6 @@ struct UserService {
             
             // snapshot은 딕셔너리로 변환하여 사용
             guard let dictionary = snapshot.value as? [String:AnyObject] else { return }
-            print("Dictionary: \(dictionary)")
             
             // User 객체 생성
             let user = User(uid: uid, dictionary: dictionary)

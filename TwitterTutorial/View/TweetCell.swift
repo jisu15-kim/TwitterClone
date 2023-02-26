@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import Then
+
+protocol TweetCellDelegate: AnyObject {
+    func handleProfileImageTapped(_ cell: TweetCell)
+}
 
 class TweetCell: UICollectionViewCell {
     
@@ -16,15 +21,30 @@ class TweetCell: UICollectionViewCell {
         }
     }
     
-    private let profileImageView: UIImageView = {
+    weak var delegate: TweetCellDelegate?
+    
+    private lazy var profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.setDimensions(width: 48, height: 48)
         iv.layer.cornerRadius = 48 / 2
         iv.backgroundColor = .twitterBlue
+        // 탭 제스쳐
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
+        iv.addGestureRecognizer(tap)
+        iv.isUserInteractionEnabled = true
         return iv
     }()
+    let label = UILabel().then {
+      $0.textAlignment = .center
+      $0.textColor = .black
+      $0.text = "Hello, World!"
+    }
+//    private let captionLabel = UILabel().then { (make: UILabel) -> Void in
+//        make.font = .systemFont(ofSize: 14)
+//        make.numberOfLines = 0
+//    }
     
     private let captionLabel: UILabel = {
         let label = UILabel()
@@ -137,11 +157,16 @@ class TweetCell: UICollectionViewCell {
         
     }
     
+    @objc func handleProfileImageTapped() {
+        delegate?.handleProfileImageTapped(self)
+    }
+    
     //MARK: - Helper
     private func configure() {
         guard let tweet = tweet else { return }
+        let viewModel = TweetViewModel(tweet: tweet)
         captionLabel.text = tweet.caption
-        profileImageView.kf.setImage(with: tweet.user.profileImageUrl)
-        infoLable.text = tweet.user.username
+        profileImageView.kf.setImage(with: viewModel.profileUrl)
+        infoLable.attributedText = viewModel.userInfoText
     }
 }

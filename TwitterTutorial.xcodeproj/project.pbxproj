@@ -29,6 +29,13 @@
 		CDB3407B29A8A14400D89820 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3407A29A8A14400D89820 /* Constraints.swift */; };
 		CDB3407D29A8ADCB00D89820 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3407C29A8ADCB00D89820 /* AuthService.swift */; };
 		CDB3B5EF29AA6B44006E012B /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3B5EE29AA6B44006E012B /* TweetCell.swift */; };
+		CDB5853729AB435A00A4877B /* TweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB5853629AB435A00A4877B /* TweetViewModel.swift */; };
+		CDB5853929AB4BB100A4877B /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB5853829AB4BB100A4877B /* ProfileController.swift */; };
+		CDB5853B29AB517E00A4877B /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB5853A29AB517E00A4877B /* ProfileHeader.swift */; };
+		CDB5853E29AB86F700A4877B /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CDB5853D29AB86F700A4877B /* Then */; };
+		CDB5854029AB96E700A4877B /* ProfileFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB5853F29AB96E700A4877B /* ProfileFilterView.swift */; };
+		CDB5854229AB990700A4877B /* ProfileFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB5854129AB990700A4877B /* ProfileFilterCell.swift */; };
+		CDB5854429ABA2B700A4877B /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB5854329ABA2B700A4877B /* ProfileHeaderViewModel.swift */; };
 		CDE7B45029A8DAF200E249A0 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7B44F29A8DAF200E249A0 /* UserService.swift */; };
 		CDE7B45229A8DF3F00E249A0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7B45129A8DF3F00E249A0 /* User.swift */; };
 		CDE7B45529A8E37400E249A0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CDE7B45429A8E37400E249A0 /* Kingfisher */; };
@@ -59,6 +66,12 @@
 		CDB3407A29A8A14400D89820 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		CDB3407C29A8ADCB00D89820 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		CDB3B5EE29AA6B44006E012B /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
+		CDB5853629AB435A00A4877B /* TweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetViewModel.swift; sourceTree = "<group>"; };
+		CDB5853829AB4BB100A4877B /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		CDB5853A29AB517E00A4877B /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		CDB5853F29AB96E700A4877B /* ProfileFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterView.swift; sourceTree = "<group>"; };
+		CDB5854129AB990700A4877B /* ProfileFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterCell.swift; sourceTree = "<group>"; };
+		CDB5854329ABA2B700A4877B /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
 		CDE7B44F29A8DAF200E249A0 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		CDE7B45129A8DF3F00E249A0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CDE7B45629A8E8BE00E249A0 /* UploadTweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetController.swift; sourceTree = "<group>"; };
@@ -73,6 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDB3407729A8965700D89820 /* FirebaseDatabase in Frameworks */,
+				CDB5853E29AB86F700A4877B /* Then in Frameworks */,
 				CDB3407929A8965800D89820 /* FirebaseStorage in Frameworks */,
 				CDB3406829A86F8F00D89820 /* SnapKit in Frameworks */,
 				CDB3407529A8965700D89820 /* FirebaseAuth in Frameworks */,
@@ -139,6 +153,7 @@
 				CDB3405829A85F8800D89820 /* NotificationsController.swift */,
 				CDB3405A29A85F9000D89820 /* ConversationsController.swift */,
 				CDE7B45629A8E8BE00E249A0 /* UploadTweetController.swift */,
+				CDB5853829AB4BB100A4877B /* ProfileController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -146,6 +161,8 @@
 		CDB3404E29A85D3800D89820 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CDB5853629AB435A00A4877B /* TweetViewModel.swift */,
+				CDB5854329ABA2B700A4877B /* ProfileHeaderViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -155,6 +172,9 @@
 			children = (
 				CDE7B45829A90CEE00E249A0 /* CaptionTextView.swift */,
 				CDB3B5EE29AA6B44006E012B /* TweetCell.swift */,
+				CDB5853A29AB517E00A4877B /* ProfileHeader.swift */,
+				CDB5853F29AB96E700A4877B /* ProfileFilterView.swift */,
+				CDB5854129AB990700A4877B /* ProfileFilterCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -209,6 +229,7 @@
 				CDB3407629A8965700D89820 /* FirebaseDatabase */,
 				CDB3407829A8965800D89820 /* FirebaseStorage */,
 				CDE7B45429A8E37400E249A0 /* Kingfisher */,
+				CDB5853D29AB86F700A4877B /* Then */,
 			);
 			productName = TwitterTutorial;
 			productReference = CD884AAC29A85CD900891BE8 /* TwitterTutorial.app */;
@@ -242,6 +263,7 @@
 				CDB3406629A86F8F00D89820 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CDB3407329A8965700D89820 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				CDE7B45329A8E37400E249A0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				CDB5853C29AB86F700A4877B /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = CD884AAD29A85CD900891BE8 /* Products */;
 			projectDirPath = "";
@@ -274,20 +296,26 @@
 				CDE7B45029A8DAF200E249A0 /* UserService.swift in Sources */,
 				CDB3405929A85F8800D89820 /* NotificationsController.swift in Sources */,
 				CDE7B45929A90CEE00E249A0 /* CaptionTextView.swift in Sources */,
+				CDB5854229AB990700A4877B /* ProfileFilterCell.swift in Sources */,
 				CDB3405B29A85F9000D89820 /* ConversationsController.swift in Sources */,
 				CDB3407029A87A1F00D89820 /* Utilities.swift in Sources */,
 				CD884AB029A85CD900891BE8 /* AppDelegate.swift in Sources */,
 				CDB3407B29A8A14400D89820 /* Constraints.swift in Sources */,
+				CDB5853929AB4BB100A4877B /* ProfileController.swift in Sources */,
+				CDB5853B29AB517E00A4877B /* ProfileHeader.swift in Sources */,
 				CDB3B5EF29AA6B44006E012B /* TweetCell.swift in Sources */,
 				CDB3405D29A86B4F00D89820 /* Extensions.swift in Sources */,
 				CDB3407D29A8ADCB00D89820 /* AuthService.swift in Sources */,
+				CDB5854429ABA2B700A4877B /* ProfileHeaderViewModel.swift in Sources */,
 				CDE7B45729A8E8BE00E249A0 /* UploadTweetController.swift in Sources */,
 				CDE7B45229A8DF3F00E249A0 /* User.swift in Sources */,
 				CDB3406B29A874BA00D89820 /* LoginController.swift in Sources */,
 				CDB3405729A85F7800D89820 /* ExploreController.swift in Sources */,
 				CD884AB229A85CD900891BE8 /* SceneDelegate.swift in Sources */,
+				CDB5853729AB435A00A4877B /* TweetViewModel.swift in Sources */,
 				CDB3405329A85DDF00D89820 /* MainTabController.swift in Sources */,
 				CDB3406E29A8751300D89820 /* RegistrationController.swift in Sources */,
+				CDB5854029AB96E700A4877B /* ProfileFilterView.swift in Sources */,
 				CDB3405529A85F5000D89820 /* FeedController.swift in Sources */,
 				CDE7B45D29A91ED800E249A0 /* Tweet.swift in Sources */,
 				CDE7B45B29A91BFF00E249A0 /* TweetService.swift in Sources */,
@@ -528,6 +556,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		CDB5853C29AB86F700A4877B /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		CDE7B45329A8E37400E249A0 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -558,6 +594,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CDB3407329A8965700D89820 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		CDB5853D29AB86F700A4877B /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDB5853C29AB86F700A4877B /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 		CDE7B45429A8E37400E249A0 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
