@@ -16,6 +16,7 @@ struct User {
     var profileImageUrl: URL?
     let uid: String
     var followStatus: FollowStatus = .loading
+    var stats: UserRelationStats?
     
     var isCurrentUser: Bool {
         return Auth.auth().currentUser?.uid == uid
@@ -32,6 +33,11 @@ struct User {
             self.profileImageUrl = url
         }
     }
+}
+
+struct UserRelationStats {
+    var followers: Int
+    var following: Int
 }
 
 enum FollowStatus: CaseIterable {

@@ -26,16 +26,16 @@ enum ProfileFilterOptions: Int, CaseIterable {
 
 struct ProfileHeaderViewModel {
     
-    private let user: User
+    let user: User
     
     let usernameText: String
     
     var followersString: NSAttributedString? {
-        return attributedText(withValue: 0, text: "following")
+        return attributedText(withValue: user.stats?.followers ?? 0, text: "following")
     }
     
     var followingString: NSAttributedString? {
-        return attributedText(withValue: 2, text: "following")
+        return attributedText(withValue: user.stats?.following ?? 0, text: "following")
     }
     
     init(user: User) {

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Then
 
 protocol TweetCellDelegate: AnyObject {
     func handleProfileImageTapped(_ cell: TweetCell)
@@ -15,7 +14,7 @@ protocol TweetCellDelegate: AnyObject {
 class TweetCell: UICollectionViewCell {
     
     //MARK: - Properties
-    var tweet: Tweet? {
+    var viewModel: TweetViewModel? {
         didSet {
             configure()
         }
@@ -36,16 +35,6 @@ class TweetCell: UICollectionViewCell {
         iv.isUserInteractionEnabled = true
         return iv
     }()
-    
-//    let label = UILabel().then {
-//      $0.textAlignment = .center
-//      $0.textColor = .black
-//      $0.text = "Hello, World!"
-//    }
-//    private let captionLabel = UILabel().then { (make: UILabel) -> Void in
-//        make.font = .systemFont(ofSize: 14)
-//        make.numberOfLines = 0
-//    }
     
     private let captionLabel: UILabel = {
         let label = UILabel()
@@ -164,9 +153,8 @@ class TweetCell: UICollectionViewCell {
     
     //MARK: - Helper
     private func configure() {
-        guard let tweet = tweet else { return }
-        let viewModel = TweetViewModel(tweet: tweet)
-        captionLabel.text = tweet.caption
+        guard let viewModel = viewModel else { return }
+        captionLabel.text = viewModel.tweet.caption
         profileImageView.kf.setImage(with: viewModel.profileUrl)
         infoLable.attributedText = viewModel.userInfoText
     }

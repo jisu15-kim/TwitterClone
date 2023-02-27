@@ -12,6 +12,8 @@
 		CD884AB929A85CDA00891BE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD884AB829A85CDA00891BE8 /* Assets.xcassets */; };
 		CD884ABC29A85CDA00891BE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD884ABA29A85CDA00891BE8 /* LaunchScreen.storyboard */; };
 		CDB1EB0C29AC5581004D474A /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1EB0B29AC5581004D474A /* UserCell.swift */; };
+		CDB1EB1429ACC40F004D474A /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1EB1329ACC40F004D474A /* ProfileViewModel.swift */; };
+		CDB1EB1829ACCFDD004D474A /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1EB1729ACCFDD004D474A /* ExploreViewModel.swift */; };
 		CDB3405329A85DDF00D89820 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3405229A85DDF00D89820 /* MainTabController.swift */; };
 		CDB3405529A85F5000D89820 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3405429A85F5000D89820 /* FeedController.swift */; };
 		CDB3405729A85F7800D89820 /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3405629A85F7800D89820 /* ExploreController.swift */; };
@@ -53,6 +55,8 @@
 		CD884ABB29A85CDA00891BE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD884ABD29A85CDA00891BE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDB1EB0B29AC5581004D474A /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		CDB1EB1329ACC40F004D474A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		CDB1EB1729ACCFDD004D474A /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		CDB3405229A85DDF00D89820 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		CDB3405429A85F5000D89820 /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		CDB3405629A85F7800D89820 /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
@@ -117,8 +121,10 @@
 			isa = PBXGroup;
 			children = (
 				CDB3405029A85D3D00D89820 /* Model */,
+				CDB1EB1629ACCFCF004D474A /* Explore */,
+				CDB1EB1529ACCEC0004D474A /* Tweet */,
+				CDB1EB0D29ACC1F8004D474A /* Profile */,
 				CDB3404F29A85D3A00D89820 /* View */,
-				CDB3404E29A85D3800D89820 /* ViewModel */,
 				CDB3404D29A85D3600D89820 /* Controllers */,
 				CDB3404B29A85D1A00D89820 /* API */,
 				CDB3405129A85D5900D89820 /* Utils */,
@@ -130,6 +136,86 @@
 				CDB3407129A894E000D89820 /* GoogleService-Info.plist */,
 			);
 			path = TwitterTutorial;
+			sourceTree = "<group>";
+		};
+		CDB1EB0D29ACC1F8004D474A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				CDB1EB0F29ACC214004D474A /* View */,
+				CDB1EB1029ACC217004D474A /* ViewModel */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		CDB1EB0F29ACC214004D474A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CDB5853829AB4BB100A4877B /* ProfileController.swift */,
+				CDB5853A29AB517E00A4877B /* ProfileHeader.swift */,
+				CDB5853F29AB96E700A4877B /* ProfileFilterView.swift */,
+				CDB5854129AB990700A4877B /* ProfileFilterCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CDB1EB1029ACC217004D474A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CDB5854329ABA2B700A4877B /* ProfileHeaderViewModel.swift */,
+				CDB1EB1329ACC40F004D474A /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CDB1EB1529ACCEC0004D474A /* Tweet */ = {
+			isa = PBXGroup;
+			children = (
+				CDB1EB1D29ACE33F004D474A /* View */,
+				CDB1EB1E29ACE345004D474A /* ViewModel */,
+			);
+			path = Tweet;
+			sourceTree = "<group>";
+		};
+		CDB1EB1629ACCFCF004D474A /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				CDB1EB1B29ACE1B5004D474A /* View */,
+				CDB1EB1C29ACE1B9004D474A /* ViewModel */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		CDB1EB1B29ACE1B5004D474A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CDB3405629A85F7800D89820 /* ExploreController.swift */,
+				CDB1EB0B29AC5581004D474A /* UserCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CDB1EB1C29ACE1B9004D474A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CDB1EB1729ACCFDD004D474A /* ExploreViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CDB1EB1D29ACE33F004D474A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CDB3B5EE29AA6B44006E012B /* TweetCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CDB1EB1E29ACE345004D474A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CDB5853629AB435A00A4877B /* TweetViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		CDB3404B29A85D1A00D89820 /* API */ = {
@@ -148,33 +234,17 @@
 				CDB3406929A874A300D89820 /* Authentication */,
 				CDB3405229A85DDF00D89820 /* MainTabController.swift */,
 				CDB3405429A85F5000D89820 /* FeedController.swift */,
-				CDB3405629A85F7800D89820 /* ExploreController.swift */,
 				CDB3405829A85F8800D89820 /* NotificationsController.swift */,
 				CDB3405A29A85F9000D89820 /* ConversationsController.swift */,
 				CDE7B45629A8E8BE00E249A0 /* UploadTweetController.swift */,
-				CDB5853829AB4BB100A4877B /* ProfileController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		CDB3404E29A85D3800D89820 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				CDB5853629AB435A00A4877B /* TweetViewModel.swift */,
-				CDB5854329ABA2B700A4877B /* ProfileHeaderViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		CDB3404F29A85D3A00D89820 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				CDE7B45829A90CEE00E249A0 /* CaptionTextView.swift */,
-				CDB3B5EE29AA6B44006E012B /* TweetCell.swift */,
-				CDB5853A29AB517E00A4877B /* ProfileHeader.swift */,
-				CDB5853F29AB96E700A4877B /* ProfileFilterView.swift */,
-				CDB5854129AB990700A4877B /* ProfileFilterCell.swift */,
-				CDB1EB0B29AC5581004D474A /* UserCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -298,11 +368,13 @@
 				CDB5854229AB990700A4877B /* ProfileFilterCell.swift in Sources */,
 				CDB3405B29A85F9000D89820 /* ConversationsController.swift in Sources */,
 				CDB1EB0C29AC5581004D474A /* UserCell.swift in Sources */,
+				CDB1EB1429ACC40F004D474A /* ProfileViewModel.swift in Sources */,
 				CDB3407029A87A1F00D89820 /* Utilities.swift in Sources */,
 				CD884AB029A85CD900891BE8 /* AppDelegate.swift in Sources */,
 				CDB3407B29A8A14400D89820 /* Constraints.swift in Sources */,
 				CDB5853929AB4BB100A4877B /* ProfileController.swift in Sources */,
 				CDB5853B29AB517E00A4877B /* ProfileHeader.swift in Sources */,
+				CDB1EB1829ACCFDD004D474A /* ExploreViewModel.swift in Sources */,
 				CDB3B5EF29AA6B44006E012B /* TweetCell.swift in Sources */,
 				CDB3405D29A86B4F00D89820 /* Extensions.swift in Sources */,
 				CDB3407D29A8ADCB00D89820 /* AuthService.swift in Sources */,

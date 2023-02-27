@@ -6,27 +6,19 @@
 //
 
 import UIKit
+import Combine
 
 private let reuseIdentifier = "TweetCell"
 private let headerIdentifier = "ProfileHeader"
 
 class ProfileController: UICollectionViewController {
     //MARK: - Properties
-    private var user: User {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
-    
-    private var tweets: [Tweet] = [] {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
+    private var subscriptions = Set<AnyCancellable>()
+    private var viewModel: ProfileViewModel
     
     //MARK: - Lifecycle
-    init(user: User) {
-        self.user = user
+    init(viewModel: ProfileViewModel) {
+        self.viewModel = viewModel
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
     
@@ -38,8 +30,7 @@ class ProfileController: UICollectionViewController {
         super.viewDidLoad()
         
         configureCollectionView()
-        fetchTweets()
-        checkIfUserIsFollowed()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,29 +40,21 @@ class ProfileController: UICollectionViewController {
         // 이거 왜 안되지: ??
         self.navigationController?.navigationBar.barStyle = .black
     }
-    //MARK: - selector
-    
-    //MARK: - API
-    func fetchTweets() {
-        TweetService.shared.fetchTweets(forUser: user) { [weak self] tweets in
-            self?.tweets = tweets
-        }
+    //MARK: - Bind
+    private func bind() {
+        viewModel.user
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.collectionView.reloadData()
+            }.store(in: &subscriptions)
+        viewModel.tweets
+            .receive(on: RunLoop.main)
+            .sink { [weak self] tweets in
+//                self?.tweets = tweets
+                self?.collectionView.reloadData()
+            }.store(in: &subscriptions)
     }
-    
-    func checkIfUserIsFollowed() {
-        if !self.user.isCurrentUser {
-            UserService.shared.checkIfUserIsFollowed(uid: user.uid) { [weak self] isFollowed in
-                if isFollowed {
-                    self?.user.followStatus = .following
-                } else {
-                    self?.user.followStatus = .unfollowing
-                }
-            }
-        } else {
-            self.user.followStatus = .currentUser
-        }
-    }
-    
+
     //MARK: - Helper
     func configureCollectionView() {
         collectionView.backgroundColor = .white
@@ -85,12 +68,13 @@ class ProfileController: UICollectionViewController {
 //MARK: - Collectionview Delegate / Datasource
 extension ProfileController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.tweets.count
+        return viewModel.getTweetsCellCount()
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TweetCell
-        cell.tweet = tweets[indexPath.row]
+        let tweet = viewModel.tweets.value[indexPath.row]
+        cell.viewModel = TweetViewModel(tweet: tweet)
         return cell
     }
 }
@@ -98,7 +82,7 @@ extension ProfileController {
 extension ProfileController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! ProfileHeader
-        header.user = self.user
+        header.viewModel = ProfileHeaderViewModel(user: viewModel.user.value)
         header.delegate = self
         return header
     }
@@ -119,23 +103,7 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
 
 extension ProfileController: ProfileHeaderDelegate {
     func handleEditProfileFollow(_ header: ProfileHeader) {
-        if user.isCurrentUser {
-            print("Edit Profile Tapped")
-            return
-        }
-        
-        switch user.followStatus {
-        case .following:
-            UserService.shared.unfollowUser(uid: user.uid) { [weak self] (error, ref) in
-                self?.user.followStatus = .unfollowing
-            }
-        case .unfollowing:
-            UserService.shared.followUser(uid: user.uid) { [weak self] (error, ref) in
-                self?.user.followStatus = .following
-            }
-        default:
-            return
-        }
+        viewModel.profileFollowEditAction()
     }
     
     func handleDismiss() {

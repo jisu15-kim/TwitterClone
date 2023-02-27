@@ -20,7 +20,7 @@ class ProfileHeader: UICollectionReusableView {
     //MARK: - Properties
     weak var delegate: ProfileHeaderDelegate?
     
-    var user: User? {
+    var viewModel: ProfileHeaderViewModel? {
         didSet {
             configure()
         }
@@ -199,21 +199,18 @@ class ProfileHeader: UICollectionReusableView {
     }
     
     private func configure() {
-        guard let user = user else { return }
-        let viewModel = ProfileHeaderViewModel(user: user)
-        profileImageView.kf.setImage(with: user.profileImageUrl)
-//        editProfileFollowButton.setTitle(viewModel.actionButtonTitle, for: .normal)
+        guard let viewModel = viewModel else { return }
+        profileImageView.kf.setImage(with: viewModel.user.profileImageUrl)
+        
         followingLabel.attributedText = viewModel.followingString
         followersLabel.attributedText = viewModel.followersString
         
-        fullnameLabel.text = user.fullname
+        fullnameLabel.text = viewModel.user.fullname
         usernameLabel.text = viewModel.usernameText
         
-        print("USER의 팔로우 상태: \(user.followStatus)")
-        
-        editProfileFollowButton.setTitleColor(user.followStatus.titleColor, for: .normal)
-        editProfileFollowButton.setTitle(user.followStatus.title, for: .normal)
-        editProfileFollowButton.backgroundColor = user.followStatus.backgroundColor
+        editProfileFollowButton.setTitleColor(viewModel.user.followStatus.titleColor, for: .normal)
+        editProfileFollowButton.setTitle(viewModel.user.followStatus.title, for: .normal)
+        editProfileFollowButton.backgroundColor = viewModel.user.followStatus.backgroundColor
     }
 }
 

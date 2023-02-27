@@ -57,8 +57,18 @@ struct UserService {
         
         // current user의 팔로잉 목록에 선택한 유저가 존재하는지 체크
         REF_USER_FOLLOWING.child(currentUid).child(uid).observeSingleEvent(of: .value) { snapshot in
-            print("팔로우 상태: \(snapshot.exists())")
             completion(snapshot.exists())
+        }
+    }
+    
+    func fetchUserStats(uid: String, completion: @escaping(UserRelationStats) -> Void) {
+        REF_USER_FOLLOWERS.child(uid).observeSingleEvent(of: .value) { snapshot in
+            let followers = snapshot.children.allObjects.count
+            REF_USER_FOLLOWING.child(uid).observeSingleEvent(of: .value) { snapshot in
+                let following = snapshot.children.allObjects.count
+                let stats = UserRelationStats(followers: followers, following: following)
+                completion(stats)
+            }
         }
     }
 }
