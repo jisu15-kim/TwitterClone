@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 private let headerIdentifier = "TweetHeader"
 private let cellIdentifier = "TweetCell"
@@ -13,6 +14,7 @@ private let cellIdentifier = "TweetCell"
 class TweetController: UICollectionViewController {
     //MARK: - Properties
     var viewModel: TweetViewModel
+    private var subscriptions = Set<AnyCancellable>()
     
     //MARK: - Lifecycle
     init(viewModel: TweetViewModel) {
@@ -26,7 +28,18 @@ class TweetController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.fetchReplies()
+        bind()
         configureCollectionView()
+    }
+    
+    //MARK: - bind
+    private func bind() {
+        viewModel.replies
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.collectionView.reloadData()
+            }.store(in: &subscriptions)
     }
     
     //MARK: - Helper
@@ -41,11 +54,12 @@ class TweetController: UICollectionViewController {
 extension TweetController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return viewModel.getRepliesCount()
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? TweetCell else { return UICollectionViewCell() }
+        cell.viewModel = viewModel.getRepliesCellViewModel(index: indexPath)
         return cell
     }
     
@@ -59,7 +73,9 @@ extension TweetController {
 extension TweetController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 250)
+        let viewModel = TweetViewModel(tweet: viewModel.tweet)
+        let captionHeight = viewModel.size(forwith: view.frame.width).height
+        return CGSize(width: view.frame.width, height: captionHeight + 260)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

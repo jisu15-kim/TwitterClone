@@ -63,6 +63,7 @@ class TweetHeader: UICollectionReusableView {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "down_arrow_24pt"), for: .normal)
         button.addTarget(self, action: #selector(showActionSheet), for: .touchUpInside)
+        button.tintColor = .gray
         return button
     }()
     
@@ -180,7 +181,7 @@ class TweetHeader: UICollectionReusableView {
         
         addSubview(captionLabel)
         captionLabel.snp.makeConstraints {
-            $0.top.equalTo(stack.snp.bottom).inset(-20)
+            $0.top.equalTo(stack.snp.bottom).inset(-12)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
         
@@ -199,7 +200,7 @@ class TweetHeader: UICollectionReusableView {
         addSubview(statsView)
         statsView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(dateLabel.snp.bottom).inset(-20)
+            $0.top.equalTo(dateLabel.snp.bottom).inset(-12)
             $0.height.equalTo(40)
         }
         
@@ -209,7 +210,7 @@ class TweetHeader: UICollectionReusableView {
         addSubview(actionStack)
         actionStack.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(12)
+            $0.top.equalTo(statsView.snp.bottom).inset(-16)
         }
     }
     

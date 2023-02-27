@@ -16,6 +16,7 @@
 		CDB1EB1829ACCFDD004D474A /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1EB1729ACCFDD004D474A /* ExploreViewModel.swift */; };
 		CDB1EB2029ACE6B7004D474A /* TweetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1EB1F29ACE6B7004D474A /* TweetController.swift */; };
 		CDB1EB2429ACE954004D474A /* TweetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1EB2329ACE954004D474A /* TweetHeader.swift */; };
+		CDB1EB2629AD1278004D474A /* UploadTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1EB2529AD1278004D474A /* UploadTweetViewModel.swift */; };
 		CDB3405329A85DDF00D89820 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3405229A85DDF00D89820 /* MainTabController.swift */; };
 		CDB3405529A85F5000D89820 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3405429A85F5000D89820 /* FeedController.swift */; };
 		CDB3405729A85F7800D89820 /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3405629A85F7800D89820 /* ExploreController.swift */; };
@@ -61,6 +62,7 @@
 		CDB1EB1729ACCFDD004D474A /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		CDB1EB1F29ACE6B7004D474A /* TweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetController.swift; sourceTree = "<group>"; };
 		CDB1EB2329ACE954004D474A /* TweetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetHeader.swift; sourceTree = "<group>"; };
+		CDB1EB2529AD1278004D474A /* UploadTweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewModel.swift; sourceTree = "<group>"; };
 		CDB3405229A85DDF00D89820 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		CDB3405429A85F5000D89820 /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		CDB3405629A85F7800D89820 /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			children = (
 				CDB3405029A85D3D00D89820 /* Model */,
 				CDB1EB1629ACCFCF004D474A /* Explore */,
+				CDB1EB2729AD129C004D474A /* UploadTweet */,
 				CDB1EB1529ACCEC0004D474A /* Tweet */,
 				CDB1EB0D29ACC1F8004D474A /* Profile */,
 				CDB3404F29A85D3A00D89820 /* View */,
@@ -224,6 +227,31 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		CDB1EB2729AD129C004D474A /* UploadTweet */ = {
+			isa = PBXGroup;
+			children = (
+				CDB1EB2829AD12AE004D474A /* View */,
+				CDB1EB2929AD12B2004D474A /* ViewModel */,
+			);
+			path = UploadTweet;
+			sourceTree = "<group>";
+		};
+		CDB1EB2829AD12AE004D474A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CDE7B45629A8E8BE00E249A0 /* UploadTweetController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CDB1EB2929AD12B2004D474A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CDB1EB2529AD1278004D474A /* UploadTweetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CDB3404B29A85D1A00D89820 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,7 +270,6 @@
 				CDB3405429A85F5000D89820 /* FeedController.swift */,
 				CDB3405829A85F8800D89820 /* NotificationsController.swift */,
 				CDB3405A29A85F9000D89820 /* ConversationsController.swift */,
-				CDE7B45629A8E8BE00E249A0 /* UploadTweetController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -383,6 +410,7 @@
 				CDB1EB1829ACCFDD004D474A /* ExploreViewModel.swift in Sources */,
 				CDB3B5EF29AA6B44006E012B /* TweetCell.swift in Sources */,
 				CDB3405D29A86B4F00D89820 /* Extensions.swift in Sources */,
+				CDB1EB2629AD1278004D474A /* UploadTweetViewModel.swift in Sources */,
 				CDB3407D29A8ADCB00D89820 /* AuthService.swift in Sources */,
 				CDB5854429ABA2B700A4877B /* ProfileHeaderViewModel.swift in Sources */,
 				CDE7B45729A8E8BE00E249A0 /* UploadTweetController.swift in Sources */,
