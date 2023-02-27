@@ -100,6 +100,11 @@ extension FeedController {
         cell.delegate = self
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = TweetController(viewModel: TweetViewModel(tweet: tweets[indexPath.row]))
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout

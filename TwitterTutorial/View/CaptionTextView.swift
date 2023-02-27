@@ -25,7 +25,7 @@ class CaptionTextView: UITextView {
         backgroundColor = .white
         font = UIFont.systemFont(ofSize: 16)
         isScrollEnabled = false
-        heightAnchor.constraint(equalToConstant: 300).isActive = true
+        heightAnchor.constraint(equalToConstant: 100).isActive = true
         
         // UITextview는 이미 uiview 아래에 있기 때문에 addsubview
         addSubview(placeholderLabel)
