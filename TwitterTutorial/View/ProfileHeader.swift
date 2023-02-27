@@ -73,10 +73,8 @@ class ProfileHeader: UICollectionReusableView {
     
     lazy var editProfileFollowButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Loading", for: .normal)
         button.layer.borderColor = UIColor.twitterBlue.cgColor
         button.layer.borderWidth = 1.25
-        button.setTitleColor(.twitterBlue, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 14)
         button.addTarget(self, action: #selector(handleEditProfileFollow), for: .touchUpInside)
         return button
@@ -204,12 +202,18 @@ class ProfileHeader: UICollectionReusableView {
         guard let user = user else { return }
         let viewModel = ProfileHeaderViewModel(user: user)
         profileImageView.kf.setImage(with: user.profileImageUrl)
-        editProfileFollowButton.setTitle(viewModel.actionButtonTitle, for: .normal)
+//        editProfileFollowButton.setTitle(viewModel.actionButtonTitle, for: .normal)
         followingLabel.attributedText = viewModel.followingString
         followersLabel.attributedText = viewModel.followersString
         
         fullnameLabel.text = user.fullname
         usernameLabel.text = viewModel.usernameText
+        
+        print("USER의 팔로우 상태: \(user.followStatus)")
+        
+        editProfileFollowButton.setTitleColor(user.followStatus.titleColor, for: .normal)
+        editProfileFollowButton.setTitle(user.followStatus.title, for: .normal)
+        editProfileFollowButton.backgroundColor = user.followStatus.backgroundColor
     }
 }
 

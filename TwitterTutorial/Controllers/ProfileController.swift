@@ -12,7 +12,11 @@ private let headerIdentifier = "ProfileHeader"
 
 class ProfileController: UICollectionViewController {
     //MARK: - Properties
-    private var user: User
+    private var user: User {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     private var tweets: [Tweet] = [] {
         didSet {
@@ -55,9 +59,16 @@ class ProfileController: UICollectionViewController {
     }
     
     func checkIfUserIsFollowed() {
-        UserService.shared.checkIfUserIsFollowed(uid: user.uid) { [weak self] isFollowed in
-            self?.user.isFollowed = isFollowed
-            self?.collectionView.reloadData()
+        if !self.user.isCurrentUser {
+            UserService.shared.checkIfUserIsFollowed(uid: user.uid) { [weak self] isFollowed in
+                if isFollowed {
+                    self?.user.followStatus = .following
+                } else {
+                    self?.user.followStatus = .unfollowing
+                }
+            }
+        } else {
+            self.user.followStatus = .currentUser
         }
     }
     
@@ -113,20 +124,17 @@ extension ProfileController: ProfileHeaderDelegate {
             return
         }
         
-        if user.isFollowed {
+        switch user.followStatus {
+        case .following:
             UserService.shared.unfollowUser(uid: user.uid) { [weak self] (error, ref) in
-                header.editProfileFollowButton.setTitle("Follow", for: .normal)
-                header.editProfileFollowButton.setTitleColor(.white, for: .normal)
-                header.editProfileFollowButton.backgroundColor = .twitterBlue
-                self?.user.isFollowed.toggle()
+                self?.user.followStatus = .unfollowing
             }
-        } else {
+        case .unfollowing:
             UserService.shared.followUser(uid: user.uid) { [weak self] (error, ref) in
-                header.editProfileFollowButton.setTitle("Following", for: .normal)
-                header.editProfileFollowButton.setTitleColor(.twitterBlue, for: .normal)
-                header.editProfileFollowButton.backgroundColor = .white
-                self?.user.isFollowed.toggle()
+                self?.user.followStatus = .following
             }
+        default:
+            return
         }
     }
     

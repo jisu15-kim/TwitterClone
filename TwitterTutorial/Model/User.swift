@@ -15,7 +15,7 @@ struct User {
     let username: String
     var profileImageUrl: URL?
     let uid: String
-    var isFollowed = false
+    var followStatus: FollowStatus = .loading
     
     var isCurrentUser: Bool {
         return Auth.auth().currentUser?.uid == uid
@@ -34,3 +34,40 @@ struct User {
     }
 }
 
+enum FollowStatus: CaseIterable {
+    case loading
+    case following
+    case unfollowing
+    case currentUser
+    
+    var backgroundColor: UIColor {
+        switch self {
+        case .unfollowing:
+            return .twitterBlue
+        default:
+            return .white
+        }
+    }
+    
+    var titleColor: UIColor {
+        switch self {
+        case .unfollowing:
+            return .white
+        default:
+            return .twitterBlue
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .unfollowing:
+            return "Follow"
+        case .following:
+            return "Following"
+        case .loading:
+            return "Loading"
+        case .currentUser:
+            return "Edit Profile"
+        }
+    }
+}

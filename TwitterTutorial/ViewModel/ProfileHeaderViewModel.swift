@@ -38,20 +38,6 @@ struct ProfileHeaderViewModel {
         return attributedText(withValue: 2, text: "following")
     }
     
-    // ActionButton 연산
-    var actionButtonTitle: String {
-        // 선택한 유저가 본인일 때 : Edit Profile
-        // 본인이 아닐때 : following / not folloing
-        if user.isCurrentUser {
-            return "Edit Profile"
-        }
-        if user.isFollowed && !user.isCurrentUser {
-            return "Following"
-        } else {
-            return "Follow"
-        }
-    }
-    
     init(user: User) {
         self.user = user
         self.usernameText = "@" + user.username
