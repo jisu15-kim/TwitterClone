@@ -44,6 +44,9 @@ struct ProfileHeaderViewModel {
         // 본인이 아닐때 : following / not folloing
         if user.isCurrentUser {
             return "Edit Profile"
+        }
+        if user.isFollowed && !user.isCurrentUser {
+            return "Following"
         } else {
             return "Follow"
         }

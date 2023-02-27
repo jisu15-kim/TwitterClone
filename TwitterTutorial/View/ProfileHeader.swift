@@ -11,6 +11,7 @@ private let backImageName = "baseline_arrow_back_white_24dp"
 
 protocol ProfileHeaderDelegate: AnyObject {
     func handleDismiss()
+    func handleEditProfileFollow(_ header: ProfileHeader)
 }
 
 class ProfileHeader: UICollectionReusableView {
@@ -70,7 +71,7 @@ class ProfileHeader: UICollectionReusableView {
         return iv
     }()
     
-    private lazy var editProfileFollowButton: UIButton = {
+    lazy var editProfileFollowButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Loading", for: .normal)
         button.layer.borderColor = UIColor.twitterBlue.cgColor
@@ -124,7 +125,7 @@ class ProfileHeader: UICollectionReusableView {
     }
     
     @objc func handleEditProfileFollow() {
-        print(#function)
+        delegate?.handleEditProfileFollow(self)
     }
     
     @objc func handleFollowingTapped() {

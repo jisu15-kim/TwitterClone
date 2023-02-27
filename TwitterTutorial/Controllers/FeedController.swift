@@ -52,7 +52,7 @@ class FeedController: UICollectionViewController {
     }
     //MARK: - Selector
     @objc func handleMyImageTapped() {
-        UserService.shared.logUserOut { [weak self] in
+        AuthService.shared.logUserOut { [weak self] in
             self?.delegate?.logoutTapped()
         }
     }

@@ -12,7 +12,7 @@ private let headerIdentifier = "ProfileHeader"
 
 class ProfileController: UICollectionViewController {
     //MARK: - Properties
-    private let user: User
+    private var user: User
     
     private var tweets: [Tweet] = [] {
         didSet {
@@ -35,6 +35,7 @@ class ProfileController: UICollectionViewController {
         
         configureCollectionView()
         fetchTweets()
+        checkIfUserIsFollowed()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,8 +49,15 @@ class ProfileController: UICollectionViewController {
     
     //MARK: - API
     func fetchTweets() {
-        TweetService.shared.fetchTweets(forUser: user) { tweets in
-            self.tweets = tweets
+        TweetService.shared.fetchTweets(forUser: user) { [weak self] tweets in
+            self?.tweets = tweets
+        }
+    }
+    
+    func checkIfUserIsFollowed() {
+        UserService.shared.checkIfUserIsFollowed(uid: user.uid) { [weak self] isFollowed in
+            self?.user.isFollowed = isFollowed
+            self?.collectionView.reloadData()
         }
     }
     
@@ -99,6 +107,29 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
 }
 
 extension ProfileController: ProfileHeaderDelegate {
+    func handleEditProfileFollow(_ header: ProfileHeader) {
+        if user.isCurrentUser {
+            print("Edit Profile Tapped")
+            return
+        }
+        
+        if user.isFollowed {
+            UserService.shared.unfollowUser(uid: user.uid) { [weak self] (error, ref) in
+                header.editProfileFollowButton.setTitle("Follow", for: .normal)
+                header.editProfileFollowButton.setTitleColor(.white, for: .normal)
+                header.editProfileFollowButton.backgroundColor = .twitterBlue
+                self?.user.isFollowed.toggle()
+            }
+        } else {
+            UserService.shared.followUser(uid: user.uid) { [weak self] (error, ref) in
+                header.editProfileFollowButton.setTitle("Following", for: .normal)
+                header.editProfileFollowButton.setTitleColor(.twitterBlue, for: .normal)
+                header.editProfileFollowButton.backgroundColor = .white
+                self?.user.isFollowed.toggle()
+            }
+        }
+    }
+    
     func handleDismiss() {
         navigationController?.popViewController(animated: true)
     }

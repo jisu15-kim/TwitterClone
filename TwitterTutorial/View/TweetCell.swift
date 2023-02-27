@@ -36,11 +36,12 @@ class TweetCell: UICollectionViewCell {
         iv.isUserInteractionEnabled = true
         return iv
     }()
-    let label = UILabel().then {
-      $0.textAlignment = .center
-      $0.textColor = .black
-      $0.text = "Hello, World!"
-    }
+    
+//    let label = UILabel().then {
+//      $0.textAlignment = .center
+//      $0.textColor = .black
+//      $0.text = "Hello, World!"
+//    }
 //    private let captionLabel = UILabel().then { (make: UILabel) -> Void in
 //        make.font = .systemFont(ofSize: 14)
 //        make.numberOfLines = 0
